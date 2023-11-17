@@ -1,0 +1,66 @@
+//mixin de less
+.generaInputs(@count)
+{
+    each(range(1, @count, 1),
+    {
+        input[type=radio]:nth-child(@{value}):checked ~ .photos>li:nth-child(@{value})
+        {
+            display: block;
+        }
+
+        input[type=radio]:nth-child(@{value}):checked ~ .bullets>li:nth-child(@{value}) b
+        {
+            background-color: black;
+        }
+    });
+}
+
+.carrusel 
+{
+    aspect-ratio: 3/1;
+    overflow:hidden;
+    position: relative;
+
+    img 
+    {
+        display: block;
+        object-fit: cover;
+        object-position: 50% 50%;
+    }
+
+    input[type=radio]
+    {
+        display: none;
+    }
+
+    .generaInputs(5);
+    
+    .photos 
+    {
+        height: 100%;
+        li 
+        {
+            display: none;
+            height: 100%;
+        }
+    }
+
+    .bullets 
+    {
+        position:absolute;
+        bottom: 0px;
+        left: 50%;
+        display: flex;
+
+        b 
+        {
+            display: block;
+            width: 20px;
+            height: 20px;
+            border: 1px solid black;
+            background-color: white;
+            border-radius: 50%;
+            margin: 0.5vw;
+        }
+    }
+}
